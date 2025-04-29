@@ -24,12 +24,12 @@ export class UsersController {
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
-
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);
   }
-
+@UseGuards(JwtAuthGuard)
   @Patch(':id/toggle')
   toggle(@Param('id') id: string, @Body('activo') activo: boolean) {
     return this.usersService.toggleActive(id, activo);
